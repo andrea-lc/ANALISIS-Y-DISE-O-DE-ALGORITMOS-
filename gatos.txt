@@ -1,0 +1,8 @@
+1,Toulouse,3,mestizo
+5,Simba,2,siamés
+12,Luna,4,persa
+3,Milo,1,bengalí
+8,Olivia,5,angora
+20,Tommy,2,mestizo
+7,Nala,3,esfinge
+15,Max,6,siamés
