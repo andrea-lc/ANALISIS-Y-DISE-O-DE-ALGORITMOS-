@@ -18,6 +18,7 @@ import java.util.List;
  */
 class Gestor_usuarios {
      //ATRIBUTOS
+    
     private static final String Ruta_archivo = "usuarios.txt";
     private static final String Ruta_gatos = "gatos.txt";
     //METODOS
