@@ -20,71 +20,56 @@ class Gestor_usuarios {
     // ========================
     // ATRIBUTOS
     // ========================
-    
-    // Atributo estático y constante (static final):
-    // - static: porque es compartido por todas las instancias de la clase.
-    // - final: porque no cambia nunca (constante).
-    // Se usa para almacenar la ruta del archivo de usuarios.
+    // Atributo estático y constante (final): su valor no cambia durante la ejecución
+    // Representa la ruta del archivo donde se guardan los usuarios
     private static final String Ruta_archivo = "usuarios.txt";
-
-    // Atributo estático y constante (static final):
-    // Se usa para almacenar la ruta del archivo de gatos.
+    
+    // Lo mismo pero aca se guardaran los gatos
     private static final String Ruta_gatos = "gatos.txt";
 
     // ========================
     // MÉTODOS
     // ========================
 
-    /**
-     * Método público y paramétrico.
-     * Parámetros: usuario (String), contraseña (String).
-     * Función: Registra un nuevo usuario en el archivo de texto "usuarios.txt".
-     * Uso de try-with-resources para asegurar que el archivo se cierre automáticamente.
-     */
+    // Método público, paramétrico, sin retorno (void).
+    // Recibe usuario y contraseña como parámetros y los guarda en el archivo usuarios.txt
     public void registrar_usuario(String usuario, String contraseña) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_archivo, true))) {
-            bw.write(usuario + "," + contraseña); // Escribe el usuario y contraseña en formato CSV.
-            bw.newLine(); // Pasa a la siguiente línea.
+            bw.write(usuario + "," + contraseña); // Guardar en formato CSV
+            bw.newLine();
             System.out.println("Usuario agregado correctamente.");
         } catch (IOException ex) {
             System.out.println("Error al leer usuarios.txt");
-        }
+        }      
     }
-
-    /**
-     * Método público y paramétrico.
-     * Parámetros: usuario (String), contraseña (String).
-     * Retorna: boolean → true si el login es correcto, false si falla.
-     * Función: Lee el archivo "usuarios.txt" y valida si existe el usuario con la contraseña.
-     */
+    
+    // Método público, paramétrico, con retorno (boolean).
+    // Recibe usuario y contraseña como parámetros.
+    // Retorna true si las credenciales existen en el archivo usuarios.txt, de lo contrario false.
     public boolean login(String usuario, String contraseña) {
         try (BufferedReader br = new BufferedReader(new FileReader(Ruta_archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(","); // Divide cada línea en usuario y contraseña.
+                String[] datos = linea.split(",");
                 if (datos.length == 2) {
                     String validarUsuario = datos[0];
-                    String validarUser = datos[1];
-                    // Verifica si el usuario y la contraseña coinciden
-                    if (validarUsuario.equals(usuario) && validarUser.equals(contraseña)) {
-                        return true;
+                    String validarContra = datos[1];
+                    if (validarUsuario.equals(usuario) && validarContra.equals(contraseña)) {
+                        return true; // Credenciales correctas
                     }
                 }
             }
         } catch (IOException ex) {
-            System.out.println("Error leyendo archivo: ");
+            System.out.println("Error leyendo archivo de usuarios.");
         }
-        return false;
+        return false; // Si no encuentra coincidencia
     }
-
-    /**
-     * Método público y paramétrico.
-     * Parámetros: iD (int), nombre (String), edad (int), raza (String).
-     * Función: Guarda un gato en el archivo "gatos.txt" con sus atributos.
-     */
-    public void guardarGato(int iD, String nombre, int edad, String Raza) {
+       
+    // Método público, paramétrico, sin retorno (void).
+    // Recibe datos de un gato (id, nombre, edad y raza) y los guarda en el archivo gatos.txt
+    public void guardarGato(int iD, String nombre, int edad, String raza) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_gatos, true))) {
-            bw.write(iD + "," + nombre + "," + edad + "," + Raza); // Guarda los datos en formato CSV.
+            bw.write(iD + "," + nombre + ","+ edad + ","+ raza);
             bw.newLine();
             System.out.println("Gato agregado correctamente.");
         } catch (IOException e) {
@@ -123,17 +108,17 @@ class Gestor_usuarios {
         *   - Lectura del archivo: O(n), siendo n el número de gatos.
         *   - Ordenamiento por inserción:
         *   - Mejor caso (lista ya ordenada): O(n).
-        *   - Peor caso (lista en orden descendente): O(n²).
-        *   - Complejidad total (dominante): O(n²).
+        *   - Peor caso (lista en orden descendente): O(n^2).
+        *   - Complejidad total (dominante): O(n^2).
         */
-        for (int i = 1; i < listaGatos.size(); i++) {
-            Gatos actual = listaGatos.get(i);
-            int j = i - 1;
-            while (j >= 0 && listaGatos.get(j).getId() > actual.getId()) {
-                listaGatos.set(j + 1, listaGatos.get(j));
-                j--;
+        for (int i = 1; i < listaGatos.size(); i++) {                       // n                       
+            Gatos actual = listaGatos.get(i);                               // n
+            int j = i - 1;                                                  // n
+            while (j >= 0 && listaGatos.get(j).getId() > actual.getId()) {  // n*n= n^2
+                listaGatos.set(j + 1, listaGatos.get(j));                   // n^2
+                j--;                                                        // n^2                                             
             }
-            listaGatos.set(j + 1, actual);
+            listaGatos.set(j + 1, actual);                                  // n^2               
         }
         return listaGatos;
     }
