@@ -86,9 +86,9 @@ class Gestion_Gatos {
          do{ 
          System.out.println ("\n======================== Listar Gatos ========================");
          System.out.println("Como desea ver la lista?");
-         System.out.println("1) Ordenamiento rápido (pasa colocando cada gato en su lugar)");
-         System.out.println("2) Ordenamiento paso a paso (compara de dos en dos)");
-         System.out.println("3) Ordenamiento escogiendo el más pequeño primero");
+         System.out.println("1) Ordenamiento rápido (pasa colocando cada gato en su lugar)");       // insercion
+         System.out.println("2) Ordenamiento paso a paso (compara de dos en dos)");                 // burbuja
+         System.out.println("3) Ordenamiento escogiendo el más pequeño primero");                   // seleccion
          System.out.println("0) Volver");
          System.out.println("================================================================");
          respuesta=leerEntero();
