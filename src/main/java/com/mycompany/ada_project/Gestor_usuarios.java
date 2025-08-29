@@ -85,7 +85,7 @@ class Gestor_usuarios {
      *   - Convierte cada línea en un objeto Gatos.
      *   - Ordena la lista por el ID de los gatos usando inserción.
      */
-    public List<Gatos> leerGatos() {
+    public List<Gatos> leerGatos(int respuesta) {
         List<Gatos> listaGatos = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(Ruta_gatos))) {
             String linea;
@@ -111,14 +111,52 @@ class Gestor_usuarios {
         *   - Peor caso (lista en orden descendente): O(n^2).
         *   - Complejidad total (dominante): O(n^2).
         */
-        for (int i = 1; i < listaGatos.size(); i++) {                       // n                       
-            Gatos actual = listaGatos.get(i);                               // n
-            int j = i - 1;                                                  // n
-            while (j >= 0 && listaGatos.get(j).getId() > actual.getId()) {  // n*n= n^2
-                listaGatos.set(j + 1, listaGatos.get(j));                   // n^2
-                j--;                                                        // n^2                                             
+        switch (respuesta){
+            case 1: {
+            for (int i = 1; i < listaGatos.size(); i++) {                       // n                       
+                Gatos actual = listaGatos.get(i);                               // n
+                int j = i - 1;                                                  // n
+                while (j >= 0 && listaGatos.get(j).getId() > actual.getId()) {  // n*n= n^2
+                    listaGatos.set(j + 1, listaGatos.get(j));                   // n^2
+                    j--;                                                        // n^2                                             
+                    }
+                listaGatos.set(j + 1, actual);                                  // n^2               
+                } 
+            break;
             }
-            listaGatos.set(j + 1, actual);                                  // n^2               
+            case 2:{
+                int n = listaGatos.size();
+                for (int i = 0; i < n - 1; i++) {
+                    for (int j = 0; j < n - i - 1; j++) {
+                        if (listaGatos.get(j).getId() > listaGatos.get(j + 1).getId()) {
+                            // Intercambiar
+                            Gatos temp = listaGatos.get(j);
+                            listaGatos.set(j, listaGatos.get(j + 1));
+                            listaGatos.set(j + 1, temp);
+                        }
+                    }
+                }
+            break;
+            }
+            case 3: {
+                int n = listaGatos.size();
+                for (int i = 0; i < n - 1; i++) {
+                    int minIndex = i;
+                    for (int j = i + 1; j < n; j++) {
+                        if (listaGatos.get(j).getId() < listaGatos.get(minIndex).getId()) {
+                            minIndex = j;
+                        }
+                    }
+                    // Intercambiar
+                    Gatos temp = listaGatos.get(minIndex);
+                    listaGatos.set(minIndex, listaGatos.get(i));
+                    listaGatos.set(i, temp);
+                }
+            break;
+            }
+            default:{
+                System.out.println("Opcion invalida");
+            }
         }
         return listaGatos;
     }
