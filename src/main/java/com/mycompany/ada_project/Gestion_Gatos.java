@@ -81,21 +81,65 @@ class Gestion_Gatos {
 
     private void listarGatos() {
          Gestor_usuarios gestor = new Gestor_usuarios();
-         List<Gatos> gatos = gestor.leerGatos();
-
-        if (gatos.isEmpty()) {
-            System.out.println("No hay gatos registrados.");
-        } else {
-            System.out.println("=== Lista de gatos ===");
-            for (Gatos g : gatos) {
-                System.out.println(g); // usa el toString() de Gato
+       
+         int respuesta;
+         do{ 
+         System.out.println ("\n======================== Listar Gatos ========================");
+         System.out.println("Como desea ver la lista?");
+         System.out.println("1) Ordenamiento rápido (pasa colocando cada gato en su lugar)");
+         System.out.println("2) Ordenamiento paso a paso (compara de dos en dos)");
+         System.out.println("3) Ordenamiento escogiendo el más pequeño primero");
+         System.out.println("0) Volver");
+         System.out.println("================================================================");
+         respuesta=leerEntero();
+         switch (respuesta){
+             case 1:{
+               List<Gatos> gatos = gestor.leerGatos(1); 
+               if (gatos.isEmpty()) {
+                System.out.println("No hay gatos registrados.");
+                } else {
+                    System.out.println("================== Lista de gatos ==================");
+                        for (Gatos g : gatos) {
+                        System.out.println(g); // usa el toString() de Gato
+                        }
+                    }
+               break;
+             }
+             case 2: {
+               List<Gatos> gatos2 = gestor.leerGatos(2); 
+               if (gatos2.isEmpty()) {
+                System.out.println("No hay gatos registrados.");
+                } else {
+                    System.out.println("================== Lista de gatos ==================");
+                        for (Gatos g : gatos2) {
+                        System.out.println(g); // usa el toString() de Gato
+                        }
+                    }           
+               break;
+             }
+             case 3: {
+               List<Gatos> gatos3 = gestor.leerGatos(3); 
+               if (gatos3.isEmpty()) {
+                System.out.println("No hay gatos registrados.");
+                } else {
+                    System.out.println("================== Lista de gatos ==================");
+                        for (Gatos g : gatos3) {
+                        System.out.println(g); // usa el toString() de Gato
+                        }
+                    }
+               break; 
+             }
+             default: {
+               System.out.println("Opción inválida.");
+               break;
+                }
             }
-        }
+         }while (respuesta != 0);
     }
 
     private void buscarGato() {
         Gestor_usuarios gestor = new Gestor_usuarios();
-        List<Gatos> gatos = gestor.leerGatos();
+        List<Gatos> gatos = gestor.leerGatos(1);
 
         System.out.print("Ingrese el ID del gato a buscar: ");
         int idBuscado = leerEntero(); 
