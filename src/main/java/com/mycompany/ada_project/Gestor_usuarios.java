@@ -123,41 +123,8 @@ class Gestor_usuarios {
                 listaGatos.set(j + 1, actual);                                  // n^2               
                 } 
             break;
-            }
-            case 2:{
-                int n = listaGatos.size();
-                for (int i = 0; i < n - 1; i++) {
-                    for (int j = 0; j < n - i - 1; j++) {
-                        if (listaGatos.get(j).getId() > listaGatos.get(j + 1).getId()) {
-                            // Intercambiar
-                            Gatos temp = listaGatos.get(j);
-                            listaGatos.set(j, listaGatos.get(j + 1));
-                            listaGatos.set(j + 1, temp);
-                        }
-                    }
-                }
-            break;
-            }
-            case 3: {
-                int n = listaGatos.size();
-                for (int i = 0; i < n - 1; i++) {
-                    int minIndex = i;
-                    for (int j = i + 1; j < n; j++) {
-                        if (listaGatos.get(j).getId() < listaGatos.get(minIndex).getId()) {
-                            minIndex = j;
-                        }
-                    }
-                    // Intercambiar
-                    Gatos temp = listaGatos.get(minIndex);
-                    listaGatos.set(minIndex, listaGatos.get(i));
-                    listaGatos.set(i, temp);
-                }
-            break;
-            }
-            default:{
-                System.out.println("Opcion invalida");
-            }
+            } 
         }
-        return listaGatos;
+            return listaGatos;  
     }
 }
