@@ -17,25 +17,21 @@ import java.util.List;
  * @author admin
  */
 class Gestor_usuarios {
+
     // ========================
     // ATRIBUTOS
     // ========================
-    // Atributo estático y constante (final): su valor no cambia durante la ejecución
-    // Representa la ruta del archivo donde se guardan los usuarios
+
     private static final String Ruta_archivo = "usuarios.txt";
-    
-    // Lo mismo pero aca se guardaran los gatos
     private static final String Ruta_gatos = "gatos.txt";
 
     // ========================
     // MÉTODOS
     // ========================
 
-    // Método público, paramétrico, sin retorno (void).
-    // Recibe usuario y contraseña como parámetros y los guarda en el archivo usuarios.txt
-    public void registrar_usuario(String usuario, String contraseña) {
+    public void registrar_usuario(String correo, String usuario, String contraseña) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_archivo, true))) {
-            bw.write(usuario + "," + contraseña); // Guardar en formato CSV
+            bw.write(correo+ ","+ usuario + "," + contraseña); // Guardar en formato CSV
             bw.newLine();
             System.out.println("Usuario agregado correctamente.");
         } catch (IOException ex) {
@@ -43,18 +39,17 @@ class Gestor_usuarios {
         }      
     }
     
-    // Método público, paramétrico, con retorno (boolean).
+
     // Recibe usuario y contraseña como parámetros.
-    // Retorna true si las credenciales existen en el archivo usuarios.txt, de lo contrario false.
-    public boolean login(String usuario, String contraseña) {
+    public boolean login(String correo, String contraseña) {
         try (BufferedReader br = new BufferedReader(new FileReader(Ruta_archivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 2) {
-                    String validarUsuario = datos[0];
-                    String validarContra = datos[1];
-                    if (validarUsuario.equals(usuario) && validarContra.equals(contraseña)) {
+                if (datos.length == 3) {
+                    String validarCorreo = datos[0];
+                    String validarContra = datos[2];
+                    if (validarCorreo.equals(correo) && validarContra.equals(contraseña)) {
                         return true; // Credenciales correctas
                     }
                 }
@@ -65,11 +60,10 @@ class Gestor_usuarios {
         return false; // Si no encuentra coincidencia
     }
        
-    // Método público, paramétrico, sin retorno (void).
     // Recibe datos de un gato (id, nombre, edad y raza) y los guarda en el archivo gatos.txt
-    public void guardarGato(int iD, String nombre, int edad, String raza) {
+    public void guardarGato(int iD, String nombre, int edad, String raza, String estado_gato, String cuidado_requerido) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_gatos, true))) {
-            bw.write(iD + "," + nombre + ","+ edad + ","+ raza);
+            bw.write(iD + "," + nombre + ","+ edad + ","+ raza + "," + estado_gato + "," + cuidado_requerido);
             bw.newLine();
             System.out.println("Gato agregado correctamente.");
         } catch (IOException e) {
@@ -77,29 +71,32 @@ class Gestor_usuarios {
         }
     }
 
+
     /**
-     * Método público y no paramétrico.
-     * Retorna: List<Gatos> → una lista con todos los gatos leídos desde el archivo.
+     * Metodo publico y no paramétrico.
+     * Retorna: List<Gatos> → una lista con todos los gatos leidos desde el archivo.
      * Función:
      *   - Lee el archivo "gatos.txt".
      *   - Convierte cada línea en un objeto Gatos.
      *   - Ordena la lista por el ID de los gatos usando inserción.
      */
-    public List<Gatos> leerGatos(int respuesta) {
+    public List<Gatos> leerGatos() {
         List<Gatos> listaGatos = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(Ruta_gatos))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
-                if (datos.length == 4) {
+                if (datos.length == 6) {
                     int id = Integer.parseInt(datos[0]);
                     String nombre = datos[1];
                     int edad = Integer.parseInt(datos[2]);
                     String raza = datos[3];
-                    listaGatos.add(new Gatos(id, nombre, edad, raza)); // Crea y agrega un objeto Gatos.
+                    String estado_gato = datos [4];
+                    String cuidado_requerido = datos[5];
+                    listaGatos.add(new Gatos(id, nombre, edad, raza,estado_gato, cuidado_requerido)); // Crear objeto y añadir a la lista
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException gestor_usuarie) {
             System.out.println("Error al leer gatos desde el archivo.");
         }
 
