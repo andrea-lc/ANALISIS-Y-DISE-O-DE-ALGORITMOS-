@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ada_project;
+package Scanner;
 
 /**
  *
  * @author admin
  */
-class Lector {
+public class Lector {
     private final java.util.Scanner scanner = new java.util.Scanner(System.in);
     
     public int LeerEntero (){
@@ -32,4 +32,3 @@ class Lector {
         }
     }
 }
-

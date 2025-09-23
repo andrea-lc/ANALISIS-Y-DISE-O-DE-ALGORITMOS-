@@ -4,6 +4,9 @@
 
 package com.mycompany.ada_project;
 
+import Gestores.Gestor_usuarios;
+import Menus.Menu;
+import Scanner.Lector;
 import java.util.Scanner;
 
 /**
@@ -12,13 +15,14 @@ import java.util.Scanner;
  */
 public class ADA_project {
     public static void main(String[] args) {
+        // Clase principal del proyecto
         Lector lector=new Lector();
         Scanner scanner = new Scanner(System.in);
 
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
         Gestor_usuarios gu = new Gestor_usuarios();
 
-        Menu2 menu = new Menu2();
+        Menu menu = new Menu();
         int opcion;
 
         do {

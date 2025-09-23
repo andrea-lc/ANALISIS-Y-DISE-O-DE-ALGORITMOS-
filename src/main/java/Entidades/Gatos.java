@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ada_project;
+package Entidades;
 
 /**
  *
  * @author admin
  */
-class Gatos {
+public class Gatos {
     // ========================
     // ATRIBUTOS
     // ========================
@@ -105,4 +105,3 @@ class Gatos {
                 ", Estado: "+ estado_gato + ", Cuidado requeridos: "+ cuidado_requerido;
     }
 }
-
