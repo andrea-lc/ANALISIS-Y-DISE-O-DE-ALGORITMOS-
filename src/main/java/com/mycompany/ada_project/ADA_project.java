@@ -15,12 +15,10 @@ import java.util.Scanner;
  */
 public class ADA_project {
     public static void main(String[] args) {
-        // Clase principal del proyecto
         Lector lector=new Lector();
-        Scanner scanner = new Scanner(System.in);
 
         // Instancia del gestor de usuarios (encargado de manejar login y registro)
-        Gestor_usuarios gu = new Gestor_usuarios();
+        Gestor_usuarios gu = new Gestor_usuarios() {};
 
         Menu menu = new Menu();
         int opcion;
@@ -58,7 +56,7 @@ public class ADA_project {
                             // Mensaje de error si las credenciales no coinciden
                             System.out.println("Correo o contraseña incorrectos.");
                             System.out.print("Desea intentar de nuevo? (si/no): ");
-                            String volvermenu = scanner.nextLine();
+                            String volvermenu = lector.LeerString();
 
                             // Si el usuario no quiere volver a intentar, salir del bucle
                             if (volvermenu.equalsIgnoreCase("no")) {
