@@ -21,8 +21,7 @@ import java.util.Map;
 public class Gestor_usuarios {
 
     private static final String Ruta_archivo = "usuarios.txt";
-    private static Map<String, String> usuarios = new HashMap<>();
-    private static Map<String, String> nombres = new HashMap<>();
+    private static Map<String, String []> usuarios = new HashMap<>();
     
     
     //problema: no leia el txt ya que el hashmap estaba vacio 
@@ -38,8 +37,7 @@ public class Gestor_usuarios {
             while ((linea = br.readLine()) != null) {
                 String[] datos = linea.split(",");
                 if (datos.length == 3) {
-                    usuarios.put(datos[0], datos[2]); // correo -> contraseña
-                    nombres.put(datos[0],datos[1]); // correo -> nombre de usuario
+                    usuarios.put(datos[0], new String[]{datos[1], datos[2]});
                 }
             }
         } catch (IOException e) {
@@ -53,15 +51,13 @@ public class Gestor_usuarios {
             System.out.println("Ese correo ya está registrado.");
             return;
         }
-
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(Ruta_archivo, true))) {
             bw.write(correo + "," + usuario + "," + contraseña);
             bw.newLine();
             System.out.println("Usuario agregado correctamente.");
 
             // También se guarda en el hashmap
-            usuarios.put(correo, contraseña);
-            nombres.put (correo,usuario);
+            usuarios.put(correo, new String[]{usuario, contraseña});
 
         } catch (IOException ex) {
             System.out.println("Error al guardar en usuarios.txt");
@@ -74,12 +70,10 @@ public class Gestor_usuarios {
             return false; // correo (usuario) no encontrado
             
         }
-
-        String contraGuardada = usuarios.get(correo); // devolvera el valor asociado a la clave "correo"
-        String usuario= nombres.get(correo);
-
-        if (contraGuardada.equals(contraseña)) {
-            System.out.println("Bienvenido "+ usuario);
+        String valor []= usuarios.get(correo); // devolvera el valor asociado a la clave "correo"
+        
+        if (valor != null && valor[1].equals(contraseña)) {
+            System.out.println("Bienvenido "+ valor[0]);
             return true;  // login correcto
         } else {
             return false; // contraseña incorrecta
