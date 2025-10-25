@@ -1,0 +1,19 @@
+https://drive.google.com/file/d/19uRu75a6dz7K9XY-3FQXgYGg08e5N-oG/view?usp=sharing
+--- TEORÍA DE QUICKSORT EN JAVA ---
+¿Qué algoritmo usa Arrays.sort() para int[]
+• DUAL-PIVOT QUICKSORT 
+
+¿CÓMO FUNCIONA EL DUAL-PIVOT QUICKSORT
+1. ELECCIÓN DE PIVOTES
+   - Selecciona DOS pivotes en lugar de uno
+   - Pivote1 = elemento en posición baja
+   - Pivote2 = elemento en posición alta
+
+2. PARTICIONAMIENTO EN 3 REGIONES
+   • Elementos  pivote1
+   • Elementos entre pivote1 y pivote2
+   • Elementos  pivote2
+
+VENTAJAS DEL DUAL-PIVOT QUICKSORT
+✓ Más eficiente que Quicksort tradicional
+✓ Reduce número de comparaciones e intercambios
