@@ -21,6 +21,8 @@ public class ADA_semana_11 {
             array[i] = rand.nextInt(1000);
         }
         
+        // arrays.sort funciona para datos primitivos (int,double) y usa dual pivot quicksort (2 pivotes)
+        
         System.out.println("Array original: " + Arrays.toString(array));
         
         Arrays.sort(array);
