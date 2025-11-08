@@ -1,0 +1,13 @@
+11,Zoe,1,siames,2.10,Hembra,no,adoptado,requiere revisión pediátrica
+12,Tereza,11,mestiza,4.90,Hembra,si,en cuidado,no requiere cuidados especiales
+13,Haru,4,mixta,2.00,femenino,si,En cuidado,ninguno
+1,Toulouse,13,mixto,12.00,Macho,si,adoptado,requiere control de vacunas
+2,Luna,2,siames,3.10,Hembra,no,en adopción,requiere desparasitación
+3,Simón,5,persa,5.80,Macho,si,adoptado,requiere dieta especial
+4,Michi,1,mestizo,2.50,Macho,no,en recuperación,requiere tratamiento para resfriado
+5,Nala,4,angora,3.90,Hembra,si,en cuidado,requiere control post-quirúrgico
+6,Tom,7,mestizo,6.10,Macho,no,adoptado,no requiere cuidados especiales
+7,Bella,3,siames,3.30,Hembra,no,en adopción,requiere esterilización
+8,Rocky,6,maine coon,7.20,Macho,si,en recuperación,requiere fisioterapia
+9,Olivia,2,bengalí,3.80,Hembra,no,en adopción,requiere control de vacunas
+10,Chispa,8,mestizo,5.50,Hembra,si,en cuidado,requiere atención dental
